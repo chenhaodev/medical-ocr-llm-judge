@@ -1,0 +1,89 @@
+{
+  "providers": {
+    "ollama": {
+      "base_url": "http://localhost:11434",
+      "models": {
+        "qwen2.5vl": {
+          "model_name": "qwen2.5vl",
+          "temperature": 0.1,
+          "max_tokens": 2000,
+          "vision_enabled": true
+        },
+        "minicpm-v4.5": {
+          "model_name": "openbmb/minicpm-v4.5",
+          "temperature": 0.1,
+          "max_tokens": 2000,
+          "vision_enabled": true
+        }
+      }
+    },
+    "openai": {
+      "base_url": "https://api.openai.com/v1",
+      "api_key_env": "OPENAI_API_KEY",
+      "models": {
+        "gpt-4o": {
+          "model_name": "gpt-4o",
+          "temperature": 0.1,
+          "max_tokens": 2000,
+          "vision_enabled": true
+        }
+      }
+    },
+    "deepseek": {
+      "base_url": "https://api.deepseek.com/v1",
+      "api_key_env": "DEEPSEEK_API_KEY",
+      "models": {
+        "deepseek-chat": {
+          "model_name": "deepseek-chat",
+          "temperature": 0.1,
+          "max_tokens": 2000
+        }
+      }
+    },
+    "glm": {
+      "base_url": "https://open.bigmodel.cn/api/paas/v4",
+      "api_key_env": "GLM_API_KEY",
+      "models": {
+        "glm-4v-plus": {
+          "model_name": "glm-4v-plus",
+          "temperature": 0.1,
+          "max_tokens": 2000,
+          "vision_enabled": true
+        }
+      }
+    },
+    "openrouter": {
+      "base_url": "https://openrouter.ai/api/v1",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "models": {
+        "internvl3-78b": {
+          "model_name": "opengvlab/internvl3-78b",
+          "temperature": 0.1,
+          "max_tokens": 4000,
+          "vision_enabled": true
+        }
+      }
+    }
+  },
+  "default_provider": "ollama",
+  "default_model": "qwen2.5vl",
+  "judge_config": {
+    "primary_judge": {
+      "provider": "openrouter",
+      "model": "internvl3-78b"
+    },
+    "secondary_judge": {
+      "provider": "deepseek",
+      "model": "deepseek-chat"
+    },
+    "scoring": {
+      "scale": 10,
+      "criteria": [
+        "accuracy",
+        "completeness",
+        "structure",
+        "field_correctness"
+      ]
+    }
+  }
+}

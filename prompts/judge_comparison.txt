@@ -1,0 +1,151 @@
+You are an expert evaluator comparing two OCR extraction results for the same medical image. Your task is to determine which extraction is better and by how much.
+
+You will be provided with:
+1. An original medical image
+2. Extraction A (from Model A)
+3. Extraction B (from Model B)
+
+## Comparison Criteria
+
+Evaluate both extractions on:
+
+### 1. Accuracy (35%)
+Which extraction has fewer errors compared to the image?
+- Text accuracy (character/word level)
+- Numeric value correctness
+- Medical term recognition
+
+### 2. Completeness (30%)
+Which extraction captured more information?
+- Field coverage
+- Missing information
+- Thoroughness
+
+### 3. Reliability (20%)
+Which extraction has fewer hallucinations?
+- Fabricated information
+- Incorrect field assignments
+- Overconfident incorrect values
+
+### 4. Structure Quality (15%)
+Which has better organization?
+- JSON structure clarity
+- Logical field grouping
+- Ease of downstream processing
+
+## Scoring
+
+For each criterion:
+- Assign a score from 0-10 for each extraction
+- Calculate the difference
+- Weight by importance
+
+## Output Format
+
+```json
+{
+  "winner": "Model A",
+  "confidence": "high",
+  "score_difference": 1.8,
+  "model_a": {
+    "total_score": 8.7,
+    "criteria_scores": {
+      "accuracy": {"score": 8.5, "weight": 0.35, "weighted": 2.975},
+      "completeness": {"score": 9.0, "weight": 0.30, "weighted": 2.700},
+      "reliability": {"score": 8.0, "weight": 0.20, "weighted": 1.600},
+      "structure": {"score": 9.0, "weight": 0.15, "weighted": 1.350}
+    },
+    "strengths": [
+      "More complete field extraction",
+      "Better handling of Chinese characters",
+      "Fewer hallucinations"
+    ],
+    "weaknesses": [
+      "One critical numeric error",
+      "Slightly slower processing"
+    ]
+  },
+  "model_b": {
+    "total_score": 6.9,
+    "criteria_scores": {
+      "accuracy": {"score": 7.0, "weight": 0.35, "weighted": 2.450},
+      "completeness": {"score": 7.5, "weight": 0.30, "weighted": 2.250},
+      "reliability": {"score": 6.0, "weight": 0.20, "weighted": 1.200},
+      "structure": {"score": 7.0, "weight": 0.15, "weighted": 1.050}
+    },
+    "strengths": [
+      "Faster processing",
+      "Good structure"
+    ],
+    "weaknesses": [
+      "Multiple missing fields",
+      "Several hallucinated values",
+      "Lower accuracy overall"
+    ]
+  },
+  "detailed_comparison": {
+    "accuracy_analysis": {
+      "model_a_errors": 2,
+      "model_b_errors": 5,
+      "winner": "Model A",
+      "details": "Model A has fewer OCR errors. Model B misread several digits and Chinese characters."
+    },
+    "completeness_analysis": {
+      "model_a_fields": 28,
+      "model_b_fields": 22,
+      "winner": "Model A",
+      "details": "Model A extracted 6 more fields than Model B, including important metadata."
+    },
+    "reliability_analysis": {
+      "model_a_hallucinations": 1,
+      "model_b_hallucinations": 3,
+      "winner": "Model A",
+      "details": "Model B has more hallucinated fields that don't appear in the image."
+    },
+    "structure_analysis": {
+      "winner": "Model A",
+      "details": "Both have good structure, Model A slightly better organized."
+    }
+  },
+  "specific_differences": [
+    {
+      "field": "patient_info.age",
+      "model_a": "54",
+      "model_b": "45",
+      "correct": "54",
+      "winner": "Model A"
+    },
+    {
+      "field": "test_items[2].measured_value",
+      "model_a": "145",
+      "model_b": "145",
+      "correct": "115",
+      "winner": "Neither (both wrong)"
+    },
+    {
+      "field": "report_metadata.inspector",
+      "model_a": "王检验师",
+      "model_b": null,
+      "correct": "王检验师",
+      "winner": "Model A"
+    }
+  ],
+  "recommendation": {
+    "preferred_model": "Model A",
+    "use_case": "General medical OCR",
+    "reasoning": "Model A provides more complete and accurate extraction with fewer hallucinations. The extra fields and better accuracy make it more suitable for clinical use despite being slightly slower.",
+    "alternative": "Model B could be considered if speed is critical and missing fields can be manually filled."
+  },
+  "summary": "Model A is clearly superior with a 1.8 point advantage (26% better). It excels in completeness and accuracy while maintaining good reliability. Model B is faster but sacrifices too much accuracy and completeness. For medical applications where accuracy is paramount, Model A is the recommended choice."
+}
+```
+
+## Guidelines
+
+- Be fair and objective
+- Consider the clinical importance of differences
+- Note when both are correct or both are wrong
+- Explain your reasoning clearly
+- Consider practical implications
+
+Now, please compare the two OCR extractions provided below.
