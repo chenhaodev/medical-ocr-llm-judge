@@ -41,7 +41,7 @@ class OllamaExtractor(BaseExtractor):
         }
 
         try:
-            response = requests.post(url, json=payload, timeout=120)
+            response = requests.post(url, json=payload, timeout=600)  # 10 min for vision models
             response.raise_for_status()
 
             result = response.json()
