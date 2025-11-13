@@ -13,12 +13,12 @@ export OPENROUTER_API_KEY="..."  # For InternVL baseline
 export DEEPSEEK_API_KEY="..."    # For DeepSeek judge
 
 # Test (defaults to qwen2.5vl)
-python scripts/test.py "data/reports/使用的报告单/1-23/1.jpg"
+python scripts/test.py "data/reports/使用的报告单/1-23/10.jpg"
 
 # Test with different models
-python scripts/test.py "data/reports/使用的报告单/1-23/1.jpg" --model gpt-4o
-python scripts/test.py "data/reports/使用的报告单/1-23/1.jpg" --model glm-4v-plus
-python scripts/test.py "data/reports/使用的报告单/1-23/1.jpg" --model minicpm-v4.5
+python scripts/test.py "data/reports/使用的报告单/1-23/10.jpg" --model gpt-4o
+python scripts/test.py "data/reports/使用的报告单/1-23/10.jpg" --model glm-4v-plus
+python scripts/test.py "data/reports/使用的报告单/1-23/10.jpg" --model minicpm-v4.5
 ```
 
 ## Supported DUTs (Device Under Test)

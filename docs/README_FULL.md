@@ -49,12 +49,12 @@ Get keys:
 
 ```bash
 # Default model (qwen2.5vl)
-python scripts/test.py "data/reports/使用的报告单/1-23/1.jpg"
+python scripts/test.py "data/reports/使用的报告单/1-23/10.jpg"
 
 # Test specific model
-python scripts/test.py "data/reports/使用的报告单/1-23/1.jpg" --model gpt-4o
-python scripts/test.py "data/reports/使用的报告单/1-23/1.jpg" --model glm-4v-plus
-python scripts/test.py "data/reports/使用的报告单/1-23/1.jpg" --model minicpm-v4.5
+python scripts/test.py "data/reports/使用的报告单/1-23/10.jpg" --model gpt-4o
+python scripts/test.py "data/reports/使用的报告单/1-23/10.jpg" --model glm-4v-plus
+python scripts/test.py "data/reports/使用的报告单/1-23/10.jpg" --model minicpm-v4.5
 ```
 
 ---
@@ -139,16 +139,16 @@ from src.testers import OCRTester, LLMJudge
 
 # Extract with DUT
 dut = OCRTester(provider="ollama", model="qwen2.5vl")
-result = dut.test_single_image("data/reports/使用的报告单/1-23/1.jpg", "report")
+result = dut.test_single_image("data/reports/使用的报告单/1-23/10.jpg", "report")
 
 # Extract with InternVL (baseline)
 baseline = OCRTester(provider="openrouter", model="internvl3-78b")
-ref_result = baseline.test_single_image("data/reports/使用的报告单/1-23/1.jpg", "report")
+ref_result = baseline.test_single_image("data/reports/使用的报告单/1-23/10.jpg", "report")
 
 # Compare with DeepSeek
 judge = LLMJudge(judge_provider="deepseek", judge_model="deepseek-chat")
 evaluation = judge.compare_extractions(
-    image_path="data/reports/使用的报告单/1-23/1.jpg",
+    image_path="data/reports/使用的报告单/1-23/10.jpg",
     extraction_a=result['extracted_data'],
     extraction_b=ref_result['extracted_data'],
     model_a_name="qwen2.5vl",
