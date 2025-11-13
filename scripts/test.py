@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-1-line OCR evaluation: python test.py <image> [--model <model>]
+1-line OCR evaluation: python scripts/test.py <image> [--model <model>]
 
 Supported DUTs:
   - qwen2.5vl (default, Ollama local)
@@ -30,9 +30,9 @@ def main():
     if len(sys.argv) < 2 or sys.argv[1] in ["-h", "--help"]:
         print(__doc__)
         print("\nExamples:")
-        print('  python test.py "data/reports/使用的报告单/1-23/1.jpg"')
-        print('  python test.py "data/reports/使用的报告单/1-23/1.jpg" --model gpt-4o')
-        print('  python test.py "data/medicine/药品-按药名分原图/美林 布洛芬混悬液/不带背景/美林 布洛芬混悬液.jpg" --model glm-4v-plus')
+        print('  python scripts/test.py "data/reports/使用的报告单/1-23/1.jpg"')
+        print('  python scripts/test.py "data/reports/使用的报告单/1-23/1.jpg" --model gpt-4o')
+        print('  python scripts/test.py "data/medicine/药品-按药名分原图/美林 布洛芬混悬液/不带背景/美林 布洛芬混悬液.jpg" --model glm-4v-plus')
         print("\nRequired API Keys:")
         print("  export OPENROUTER_API_KEY='...'  # For InternVL baseline")
         print("  export DEEPSEEK_API_KEY='...'    # For DeepSeek judge")

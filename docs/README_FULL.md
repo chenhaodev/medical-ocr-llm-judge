@@ -49,12 +49,12 @@ Get keys:
 
 ```bash
 # Default model (qwen2.5vl)
-python test.py "data/reports/使用的报告单/1-23/1.jpg"
+python scripts/test.py "data/reports/使用的报告单/1-23/1.jpg"
 
 # Test specific model
-python test.py "data/reports/使用的报告单/1-23/1.jpg" --model gpt-4o
-python test.py "data/reports/使用的报告单/1-23/1.jpg" --model glm-4v-plus
-python test.py "data/reports/使用的报告单/1-23/1.jpg" --model minicpm-v4.5
+python scripts/test.py "data/reports/使用的报告单/1-23/1.jpg" --model gpt-4o
+python scripts/test.py "data/reports/使用的报告单/1-23/1.jpg" --model glm-4v-plus
+python scripts/test.py "data/reports/使用的报告单/1-23/1.jpg" --model minicpm-v4.5
 ```
 
 ---
@@ -320,12 +320,13 @@ ollama pull openbmb/minicpm-v4.5
 │   ├── ocr_extraction_medicine.txt
 │   ├── judge_ocr_quality.txt
 │   └── judge_comparison.txt
+├── scripts/             # Executable scripts
+│   └── test.py          # Main entry point (1-line command)
 ├── tests/               # Unit tests
 │   └── test_imports.py
 ├── results/             # Output directory (gitignored)
 ├── docs/                # Documentation
 │   └── README_FULL.md
-├── test.py              # Main entry point (1-line command)
 └── requirements.txt
 ```
 
@@ -343,8 +344,8 @@ To add a new model:
 
 1. Add configuration to `config/llm_config.json`
 2. Set API key environment variable (if needed)
-3. Add to `DUTS` dict in `test.py`
-4. Test: `python test.py <image> --model <your-model>`
+3. Add to `DUTS` dict in `scripts/test.py`
+4. Test: `python scripts/test.py <image> --model <your-model>`
 
 ---
 
