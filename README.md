@@ -19,6 +19,18 @@ python scripts/test.py "data/reports/使用的报告单/1-23/10.jpg"
 python scripts/test.py "data/reports/使用的报告单/1-23/10.jpg" --model gpt-4o
 python scripts/test.py "data/reports/使用的报告单/1-23/10.jpg" --model glm-4v-plus
 python scripts/test.py "data/reports/使用的报告单/1-23/10.jpg" --model minicpm-v4.5
+
+# New features:
+--verbose/-v: Show detailed extraction JSON previews
+--random <dir>: Randomly select images from directory
+--count <n>: Specify number of random samples (1-10, default 3)
+--save <file>: Save results to JSON file
+Summary report for multiple images with average score
+
+Examples:
+python scripts/test.py image.jpg --verbose
+python scripts/test.py --random data/reports --count 5
+python scripts/test.py --random data/reports --count 10 --save results.json
 ```
 
 ## Supported DUTs (Device Under Test)
